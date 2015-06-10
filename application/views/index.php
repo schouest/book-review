@@ -38,6 +38,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <body>
 <div id="container">
 <h2>Welcome to Amazing Zone books</h2>
+<p><?= $this->session->flashdata('errors'); ?></p>
 	<div id="body">
 		<form method='post' action='register'>
 			<label>Name: <input type='text' name='name'></label>

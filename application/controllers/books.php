@@ -32,12 +32,32 @@ class books extends CI_Controller {
 	}
 
 	public function add_user(){
-		//var_dump($this->input->post());
+		$this->load->model('book');
+		if($this->book->validate_reg($this->input->post()) === FALSE){
+			$this->session->set_flashdata('errors', validation_errors());
+			redirect("/");
+		}
+		if($user=$this->book->add_user($this->input->post())){
+
+			$mail = $this->input->post('mail');
+			$newuser= $this->book->get_user_bymail($mail);
+
+			if($newuser){
+				$this->session->set_userdata('loggedid',$newuser['user_id']);
+				$tempvar = $newuser['name'];
+				$this->session->set_userdata('loggedname',$tempvar);
+				redirect('/');
+			}				
+		}
+		else{
+		redirect('/');	
+		}
 		
-		redirect('/');
+		
 	}
 
 	public function login(){
+		$this->load->model('book');
 		//var_dump($this->input->post());
 		die();
 		redirect('/');
