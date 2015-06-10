@@ -28,7 +28,20 @@ $this->load->library('form_validation');
         else{
                     return TRUE;
         }    	
-	}  
+	}
+
+	function validate_login($post){
+$this->load->library('form_validation');
+        $this->form_validation->set_rules('mail', "Email", 'required|valid_email');
+        $this->form_validation->set_rules('passcode', 'Password', 'required|trim');
+
+        if($this->form_validation->run() === FALSE){
+            return FALSE;
+        }
+        else{
+                    return TRUE;
+        }
+}  
 
 	function add_user($user_info){//unsalted
 $encrypt_pass = md5($user_info['passcode']);

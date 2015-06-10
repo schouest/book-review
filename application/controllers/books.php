@@ -46,20 +46,66 @@ class books extends CI_Controller {
 				$this->session->set_userdata('loggedid',$newuser['user_id']);
 				$tempvar = $newuser['name'];
 				$this->session->set_userdata('loggedname',$tempvar);
-				redirect('/');
+				redirect('mainpage');
 			}				
 		}
 		else{
 		redirect('/');	
-		}
-		
-		
+		}	
 	}
 
 	public function login(){
 		$this->load->model('book');
-		//var_dump($this->input->post());
-		die();
+		if($this->book->validate_login($this->input->post()) === FALSE){
+			$this->session->set_flashdata('errors', validation_errors());
+		}
+		$mail = $this->input->post('mail');
+		$passcode = $this->input->post('passcode');
+		$user= $this->book->get_user_bymail($mail);
+		
+		if($user)
+		{//=success
+			$encrypt_pass = md5($passcode);
+			if($encrypt_pass == $user['password'])
+			{
+				$this->session->set_userdata('loggedid',$user['user_id']);
+				$tempvar = $user['name'];
+				$this->session->set_userdata('loggedname',$tempvar);
+				redirect('mainpage');
+			}
+			$this->session->set_flashdata('errors', 'Invalid Login Credentials');
+			/*echo $passcode .'-> ' . $encrypt_pass . ' is not equal to ' . $user['password'] . ' and the salt is ' . $salt;
+			die();*/		
+		}//=failure
+			$this->session->set_flashdata('errors', 'Invalid Login Credentials');
 		redirect('/');
+	}
+
+	public function salt_login(){
+		$this->load->model('book');
+		if($this->book->validate_login($this->input->post()) === FALSE){
+			$this->session->set_flashdata('errors', validation_errors());
+		}
+		$mail = $this->input->post('mail');
+		$passcode = $this->input->post('passcode');
+		$user= $this->book->get_user_bymail($mail);
+		
+		if($user)
+		{//=success
+			$salt = $user['salt'];
+			$encrypt_pass = md5($passcode . '' . $salt);
+			if($encrypt_pass == $user['password'])
+			{
+				$this->session->set_userdata('loggedid',$user['user_id']);
+				$tempvar = $user['first_name'] . " " . $user['last_name'];
+				$this->session->set_userdata('loggedname',$tempvar);
+				redirect('/');
+			}
+			$this->session->set_flashdata('errors', 'Invalid Login Credentials');
+			/*echo $passcode .'-> ' . $encrypt_pass . ' is not equal to ' . $user['password'] . ' and the salt is ' . $salt;
+			die();*/		
+		}//=failure
+			$this->session->set_flashdata('errors', 'Invalid Login Credentials');
+		redirect('login');
 	}
 }
