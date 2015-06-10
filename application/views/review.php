@@ -33,25 +33,51 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		border: 1px solid #D0D0D0;
 		box-shadow: 0 0 8px #D0D0D0;
 	}
+
+	#toprightnav{
+		position: absolute;
+		right: 0px;
+		top: 0px;	
+	}
+
+	#toprightnav form,li{
+		display: inline;
+	}
+
+	#toprigtnav ul{
+		list-style-type: none;
+	}
 	</style>
 </head>
 <body>
-
-<div id="container">
 <h2>Welcome to Amazing Zone books</h2>
+<div id='toprightnav'>
+	<ul>
+		<li>Link1</li>
+		<li>Link2</li>
+		<li><form action='logout'>
+			<button type='submit' value='submit'>Log Out</button>
+		</form></li>
+		
+	</ul>
+</div>
+<div id="container">
+
+
+<p><?= $this->session->flashdata('errors'); ?></p>
 	<div id="body">
-		<form method='post' action=''>
-			<label>Name: <input></label>
-			<label>Alias: <input></label>
-			<label>Email: <input></label>
-			<label>Password: <input></label>
-			<label>Confirm PW: <input></label>
+		<form method='post' action='register'>
+			<label>Name: <input type='text' name='name'></label>
+			<label>Alias: <input type='text' name='alias'></label>
+			<label>Email: <input type='email' name='mail'></label>
+			<label>Password: <input type='password' name='passcode'></label>
+			<label>Confirm PW: <input type='password' name='cpasscode'></label>
 			<button type='submit' value='submit'>Register</button>
 		</form>
 
-		<form method='post' action=''>
-			<label>Email: <input></label>
-			<label>Password: <input></label>
+		<form method='post' action='signin'>
+			<label>Email: <input type='email' name='mail'></label>
+			<label>Password: <input type='password' name='passcode'></label>
 			<button type='submit' value='submit'>Login</button>
 		</form>
 	</div>

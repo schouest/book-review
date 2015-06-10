@@ -33,11 +33,37 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		border: 1px solid #D0D0D0;
 		box-shadow: 0 0 8px #D0D0D0;
 	}
+
+	#toprightnav{
+		position: absolute;
+		right: 0px;
+		top: 0px;	
+	}
+
+	#toprightnav form,li{
+		display: inline;
+	}
+
+	#toprigtnav ul{
+		list-style-type: none;
+	}
 	</style>
 </head>
 <body>
-<div id="container">
 <h2>Welcome to Amazing Zone books</h2>
+<div id='toprightnav'>
+	<ul>
+		<li>Link1</li>
+		<li>Link2</li>
+		<li><form action='logout'>
+			<button type='submit' value='submit'>Log Out</button>
+		</form></li>
+		
+	</ul>
+</div>
+<div id="container">
+
+
 <p><?= $this->session->flashdata('errors'); ?></p>
 	<div id="body">
 		<form method='post' action='register'>

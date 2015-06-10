@@ -108,4 +108,10 @@ class books extends CI_Controller {
 			$this->session->set_flashdata('errors', 'Invalid Login Credentials');
 		redirect('login');
 	}
+
+	public function logout(){
+		$this->session->unset_userdata('loggedname');
+		$this->session->unset_userdata('loggedid');
+		redirect('/');
+	}
 }

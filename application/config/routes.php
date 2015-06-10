@@ -58,3 +58,4 @@ $route['viewuser'] = 'books/view_user';
 $route['review'] = 'books/view_addreview';
 $route['register'] = 'books/add_user';
 $route['signin'] = 'books/login';
+$route['logout'] = 'books/logout';
