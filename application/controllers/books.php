@@ -9,9 +9,14 @@ class books extends CI_Controller {
 	}
 	public function index()
 	{
+		if(!empty($this->session->userdata('loggedid'))){
+			redirect('mainpage');
+		}
+
 		if(null ===($this->session->userdata('loggedid'))){
 			$this->session->set_userdata('loggedid',0);
 		}
+
 		$this->load->view('index');
 	}
 
@@ -44,8 +49,8 @@ class books extends CI_Controller {
 
 			if($newuser){
 				$this->session->set_userdata('loggedid',$newuser['user_id']);
-				$tempvar = $newuser['name'];
-				$this->session->set_userdata('loggedname',$tempvar);
+				$this->session->set_userdata('loggedname',$newuser['name']);
+				$this->session->set_userdata('loggedalias',$newuser['alias']);
 				redirect('mainpage');
 			}				
 		}
@@ -69,8 +74,8 @@ class books extends CI_Controller {
 			if($encrypt_pass == $user['password'])
 			{
 				$this->session->set_userdata('loggedid',$user['user_id']);
-				$tempvar = $user['name'];
-				$this->session->set_userdata('loggedname',$tempvar);
+				$this->session->set_userdata('loggedname',$user['name']);
+				$this->session->set_userdata('loggedalias',$user['alias']);
 				redirect('mainpage');
 			}
 			$this->session->set_flashdata('errors', 'Invalid Login Credentials');
@@ -112,6 +117,7 @@ class books extends CI_Controller {
 	public function logout(){
 		$this->session->unset_userdata('loggedname');
 		$this->session->unset_userdata('loggedid');
+		$this->session->unset_userdata('loggedalias');
 		redirect('/');
 	}
 }

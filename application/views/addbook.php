@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Welcome to Amazing Zone books</title>
+	<title>Add Book: Amazing Zone</title>
 
 	<style type="text/css">
 
@@ -47,14 +47,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	#toprigtnav ul{
 		list-style-type: none;
 	}
+
+	textarea{
+		resize:none;
+	}
 	</style>
 </head>
 <body>
-<h2>Welcome to Amazing Zone books</h2>
+<h1>Add a Book</h1>
 <div id='toprightnav'>
 	<ul>
-		<li>Link1</li>
-		<li>Link2</li>
+		<li><a href="/">Home</a></li>
 		<li><form action='logout'>
 			<button type='submit' value='submit'>Log Out</button>
 		</form></li>
@@ -63,22 +66,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </div>
 <div id="container">
 
-
 <p><?= $this->session->flashdata('errors'); ?></p>
 	<div id="body">
-		<form method='post' action='register'>
-			<label>Name: <input type='text' name='name'></label>
-			<label>Alias: <input type='text' name='alias'></label>
-			<label>Email: <input type='email' name='mail'></label>
-			<label>Password: <input type='password' name='passcode'></label>
-			<label>Confirm PW: <input type='password' name='cpasscode'></label>
-			<button type='submit' value='submit'>Register</button>
-		</form>
-
-		<form method='post' action='signin'>
-			<label>Email: <input type='email' name='mail'></label>
-			<label>Password: <input type='password' name='passcode'></label>
-			<button type='submit' value='submit'>Login</button>
+		<form method='post' action='review' id='theform'>
+			<label>Title: <input type='text' name='title'></label>
+			<label>Author: <select name='author'>
+				<option value="ex1">ex 1</option>
+				<option value="ex2">ex 2</option>
+				<option value="ex3">ex 3</option>
+			</select></label>
+			<label>Or enter new Author: <input type='text' name='newauthor'></label>
+			<label>Review: <textarea form='theform' placeholder="add review" name="review"></textarea></label>
+			<label>Rating: <input type='range' name='rating' min="1" max="5"></label>
+			<button type='submit' value='submit'>Add Book</button>
 		</form>
 	</div>
 </div>

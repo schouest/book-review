@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Welcome to Amazing Zone books</title>
+	<title>Amazing Zone: User Info</title>
 
 	<style type="text/css">
 
@@ -53,8 +53,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <h2>Welcome to Amazing Zone books</h2>
 <div id='toprightnav'>
 	<ul>
-		<li>Link1</li>
-		<li>Link2</li>
+		<li><a href='/'>Home</a></li>
+		<li><a href='addbook'>Add Book And Review</a></li>
 		<li><form action='logout'>
 			<button type='submit' value='submit'>Log Out</button>
 		</form></li>
@@ -63,23 +63,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </div>
 <div id="container">
 
-
-<p><?= $this->session->flashdata('errors'); ?></p>
 	<div id="body">
-		<form method='post' action='register'>
-			<label>Name: <input type='text' name='name'></label>
-			<label>Alias: <input type='text' name='alias'></label>
-			<label>Email: <input type='email' name='mail'></label>
-			<label>Password: <input type='password' name='passcode'></label>
-			<label>Confirm PW: <input type='password' name='cpasscode'></label>
-			<button type='submit' value='submit'>Register</button>
-		</form>
-
-		<form method='post' action='signin'>
-			<label>Email: <input type='email' name='mail'></label>
-			<label>Password: <input type='password' name='passcode'></label>
-			<button type='submit' value='submit'>Login</button>
-		</form>
 	</div>
 </div>
 </body>
