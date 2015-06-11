@@ -68,7 +68,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div id="container">
 <p><?= $this->session->flashdata('errors'); ?></p>
 	<div id="body">
-		<form method='post' action='submitreview' id='theform'>
+		<form method='post' action='submitreview/<?= $book["book_id"] ?>' id='theform'>
 			<label>Review: <textarea cols='50' rows='12' form='theform' placeholder="add review" name="review"></textarea></label>
 			<label>Rating: <input type='range' name='rating' min="1" max="5"></label>
 			<input type='hidden' value="<?= $book['book_id'] ?>" name='id_book'>

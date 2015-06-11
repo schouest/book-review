@@ -91,7 +91,7 @@ $review['txt'];
 ?>
 
 
-		<h2>Other Books with Reviews</h2>
+		<h2>Other Books to Review</h2>
 		<div>
 <?php
 foreach ($allbooks as $book) {

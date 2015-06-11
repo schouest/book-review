@@ -131,11 +131,10 @@ class books extends CI_Controller {
 		redirect('addbook');
 	}
 
-	public function add_review(){//add review to previously existing book
-		die('button');//this isn't working
+	public function add_review($book_id){//add review to previously existing book
 		$this->load->model('book');
-		$this->book->add_review($insert_id,$this->session->userdata('loggedid'),$this->input->post());//put in review
-		redirect("review/$insert_id");
+		$this->book->add_review($book_id,$this->session->userdata('loggedid'),$this->input->post());//put in review
+		redirect("review/$book_id");
 	}
 
 }
