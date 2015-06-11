@@ -78,6 +78,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<h2>Reviews:</h2>
 <?php 	foreach ($reviews as $review) {
 		?><hr><?php
+		 echo 'Rating: ';
 		for($i=0; $i<$review['rating'];$i++){
 			echo "&#9751";
 		}
