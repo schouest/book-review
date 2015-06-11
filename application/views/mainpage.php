@@ -1,5 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+var_dump($recentreviews);
+echo ('<br><hr><br>');
+var_dump($allbooks);
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -63,7 +66,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div id="container">
 
 	<div id="body">
-		
+		<h1>Latest Book Reviews</h1>
+		<?php
+		?>
+
+
+		<h2>Other Books with Reviews</h2>
+		<div>
+			<p>stuff goes here</p>
+		</div>
 	</div>
 </div>
 </body>

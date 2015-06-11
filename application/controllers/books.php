@@ -19,7 +19,15 @@ class books extends CI_Controller {
 	}
 
 	public function view_mainpage(){
-		$this->load->view('mainpage');
+		$this->load->model('book');
+		if($reviews=$this->book->get_all_reviews()){
+			$books=$this->book->get_all_books();
+
+			$this->load->view('mainpage', array('recentreviews' => $reviews, 'allbooks' => $books));
+		}
+		else{
+		redirect('/');
+		}
 	}
 
 	public function view_addbook(){
@@ -124,7 +132,10 @@ class books extends CI_Controller {
 	}
 
 	public function add_review(){//add review to previously existing book
-
+		die('button');//this isn't working
+		$this->load->model('book');
+		$this->book->add_review($insert_id,$this->session->userdata('loggedid'),$this->input->post());//put in review
+		redirect("review/$insert_id");
 	}
 
 }

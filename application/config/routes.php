@@ -60,3 +60,4 @@ $route['register'] = 'books/add_user';
 $route['signin'] = 'books/login';
 $route['logout'] = 'books/logout';
 $route['submitbook'] = 'books/add_book';
+$route['submitreview'] = 'books/add_review';

@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-var_dump($Reviews);
+//TODO: Need to add ability to review from this page
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -68,15 +68,29 @@ var_dump($Reviews);
 <div id="container">
 <p><?= $this->session->flashdata('errors'); ?></p>
 	<div id="body">
-		<form method='post' action='' id='theform'>
+		<form method='post' action='submitreview' id='theform'>
 			<label>Review: <textarea cols='50' rows='12' form='theform' placeholder="add review" name="review"></textarea></label>
 			<label>Rating: <input type='range' name='rating' min="1" max="5"></label>
+			<input type='hidden' value="<?= $book['book_id'] ?>" name='id_book'>
 			<button type='submit' value='submit'>Add Review</button>
 		</form>
 
 		<h2>Reviews:</h2>
-<?php
+<?php 	foreach ($reviews as $review) {
+		?><hr><?php
+		for($i=0; $i<$review['rating'];$i++){
+			echo "&#9751";
+		}
+		while($i<5){
+			echo '&#9750';
+			$i++;
+		}
 
+		?><br>
+		<p><?= $review['alias'] ?> says: <?= $review['txt'] ?></p>
+		<p>Posted on: <?= $review['date_added'] ?></p><?php
+		}
+	
 
 ?>
 	</div>
