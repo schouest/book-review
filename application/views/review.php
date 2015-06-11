@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+var_dump($Reviews);
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,10 +48,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	#toprigtnav ul{
 		list-style-type: none;
 	}
+
+	textarea{
+		resize:none;
+	}
 	</style>
 </head>
 <body>
-<h2><?= 'EXAMPLE TITLE'?> Reviews</h2>
+<h2>Reviews of <?= $book['title']?></h2>
+<h3>Author: <?= $book['name'] ?></h3>
 <div id='toprightnav'>
 	<ul>
 		<li><a href='/'>Home</a></li>
@@ -60,15 +66,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</ul>
 </div>
 <div id="container">
-
-
 <p><?= $this->session->flashdata('errors'); ?></p>
 	<div id="body">
 		<form method='post' action='' id='theform'>
-			<label>Review: <textarea form='theform' placeholder="add review" name="review"></textarea></label>
+			<label>Review: <textarea cols='50' rows='12' form='theform' placeholder="add review" name="review"></textarea></label>
 			<label>Rating: <input type='range' name='rating' min="1" max="5"></label>
 			<button type='submit' value='submit'>Add Review</button>
 		</form>
+
+		<h2>Reviews:</h2>
+<?php
+
+
+?>
 	</div>
 </div>
 </body>

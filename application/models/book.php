@@ -17,6 +17,14 @@ function get_user_bymail($mail){
 	return $this->db->query("SELECT * FROM users WHERE email = ?", array($mail))->row_array();
 }
 
+function get_book($id){
+    return $this->db->query("SELECT * FROM books LEFT JOIN authors ON books.author_id = authors.author_id WHERE book_id = ?", array($id))->row_array();
+}
+
+function get_reviews_byid($book_id){
+    return $this->db->query("SELECT * FROM reviews WHERE book_id = ?", array($book_id))->result_array();
+}
+
 
 	function validate_reg($post){
 $this->load->library('form_validation');
@@ -72,6 +80,12 @@ $query = "INSERT INTO authors (name, date_created) VALUES (?,?)";
     $query = "INSERT INTO books (title, author_id, date_created) VALUES (?,?,?)";
         $values = array($book_info['title'], $book_id, date("Y-m-d, H:i:s"));
         return $this->db->query($query, $values);
+    }
+
+    function add_review($book_id, $user_id, $review_info){
+$query = "INSERT INTO reviews (book_id, user_id, rating, txt, date_added) VALUES (?,?,?,?,?)";
+         $values = array($book_id, $user_id, $review_info['rating'], $review_info['review'], date("Y-m-d, H:i:s"));
+         return $this->db->query($query, $values);
     }
 
 }

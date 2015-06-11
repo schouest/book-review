@@ -12,11 +12,9 @@ class books extends CI_Controller {
 		if(!empty($this->session->userdata('loggedid'))){
 			redirect('mainpage');
 		}
-
 		if(null ===($this->session->userdata('loggedid'))){
 			$this->session->set_userdata('loggedid',0);
 		}
-
 		$this->load->view('index');
 	}
 
@@ -38,8 +36,15 @@ class books extends CI_Controller {
 		$this->load->view('userview');
 	}
 
-	public function view_addreview(){
-		$this->load->view('review');
+	public function view_addreview($id){
+		$this->load->model('book');
+		if($book=$this->book->get_book($id)){
+			$reviews=$this->book->get_reviews_byid($id);
+			$this->load->view('review', array('book' => $book, 'reviews' => $reviews));
+		}
+		else{
+			redirect('/');
+		}		
 	}
 
 	public function add_user(){
@@ -111,8 +116,15 @@ class books extends CI_Controller {
         }
 		if($user=$this->book->add_book($this->input->post())){
 			$insert_id = $this->db->insert_id();
+
+			$this->book->add_review($insert_id,$this->session->userdata('loggedid'),$this->input->post());//put in review
 			redirect("review/$insert_id");
 		}
 		redirect('addbook');
 	}
+
+	public function add_review(){//add review to previously existing book
+
+	}
+
 }
