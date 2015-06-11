@@ -51,16 +51,24 @@ $query = "INSERT INTO users (email, password, name, alias, date_created) VALUES 
 	}
 
 
-	function create_user($user_info){//salted
-if(isset($user_info['passcode'])){
-	$salt = bin2hex(openssl_random_pseudo_bytes(22));
-	$encrypt_pass = md5($user_info['passcode'] . '' . $salt);
-}
+    function add_author($author_name){
+$query = "INSERT INTO authors (name, date_created) VALUES (?,?)";
+         $values = array($author_name, date("Y-m-d, H:i:s"));
 
-$query = "INSERT INTO users (email, password, first_name, last_name, user_level, date_created, date_updated, salt) VALUES (?,?,?,?,?,?,?,?)";
-         $values = array($user_info['mail'], $encrypt_pass, $user_info['f_name'], $user_info['l_name'], 1, date("Y-m-d, H:i:s"), date("Y-m-d, H:i:s"), $salt); 
-         return $this->db->query($query, $values);
-}
+        return $this->db->query($query, $values);
+    }
+
+    function add_book($book_info){
+        if(!empty($book_info['newauthor'])){
+            $book_id = $this->db->insert_id();//new author id from last entered auto increment
+        }
+        else{
+            $book_id = $book_info['author'];//old author id from form
+        }
+    $query = "INSERT INTO books (title, author_id, date_created) VALUES (?,?,?)";
+        $values = array($book_info['title'], $book_id, date("Y-m-d, H:i:s"));
+        return $this->db->query($query, $values);
+    }
 
 }
 ?>

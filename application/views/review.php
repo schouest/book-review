@@ -67,7 +67,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<form method='post' action='' id='theform'>
 			<label>Review: <textarea form='theform' placeholder="add review" name="review"></textarea></label>
 			<label>Rating: <input type='range' name='rating' min="1" max="5"></label>
-			<button type='submit' value='submit'>Add Book</button>
+			<button type='submit' value='submit'>Add Review</button>
 		</form>
 	</div>
 </div>

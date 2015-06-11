@@ -68,14 +68,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <p><?= $this->session->flashdata('errors'); ?></p>
 	<div id="body">
-		<form method='post' action='review' id='theform'>
+		<form method='post' action='submitbook' id='theform'>
 			<label>Title: <input type='text' name='title'></label>
 			<label>Author: <select name='author'>
-				<option value="ex1">ex 1</option>
-				<option value="ex2">ex 2</option>
-				<option value="ex3">ex 3</option>
+				<option value="1">ex 1</option>
+				<option value="2">ex 2</option>
+				<option value="3">ex 3</option>
 			</select></label>
-			<label>Or enter new Author: <input type='text' name='newauthor'></label>
+			<label>Or enter new Author: <input type='text' name='newauthor' placeholder="overrides selection above"></label>
 			<label>Review: <textarea form='theform' placeholder="add review" name="review"></textarea></label>
 			<label>Rating: <input type='range' name='rating' min="1" max="5"></label>
 			<button type='submit' value='submit'>Add Book</button>

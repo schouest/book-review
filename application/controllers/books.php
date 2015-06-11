@@ -86,38 +86,27 @@ class books extends CI_Controller {
 		redirect('/');
 	}
 
-	public function salt_login(){
-		$this->load->model('book');
-		if($this->book->validate_login($this->input->post()) === FALSE){
-			$this->session->set_flashdata('errors', validation_errors());
-		}
-		$mail = $this->input->post('mail');
-		$passcode = $this->input->post('passcode');
-		$user= $this->book->get_user_bymail($mail);
-		
-		if($user)
-		{//=success
-			$salt = $user['salt'];
-			$encrypt_pass = md5($passcode . '' . $salt);
-			if($encrypt_pass == $user['password'])
-			{
-				$this->session->set_userdata('loggedid',$user['user_id']);
-				$tempvar = $user['first_name'] . " " . $user['last_name'];
-				$this->session->set_userdata('loggedname',$tempvar);
-				redirect('/');
-			}
-			$this->session->set_flashdata('errors', 'Invalid Login Credentials');
-			/*echo $passcode .'-> ' . $encrypt_pass . ' is not equal to ' . $user['password'] . ' and the salt is ' . $salt;
-			die();*/		
-		}//=failure
-			$this->session->set_flashdata('errors', 'Invalid Login Credentials');
-		redirect('login');
-	}
-
 	public function logout(){
 		$this->session->unset_userdata('loggedname');
 		$this->session->unset_userdata('loggedid');
 		$this->session->unset_userdata('loggedalias');
 		redirect('/');
+	}
+
+	public function add_book(){
+		$this->load->model('book');
+		if(!empty($this->input->post('newauthor'))){
+            if($newauthor= $this->book->add_author($this->input->post('newauthor'))){//sql model for add author
+            	$author = $this->input->post('newauthor');
+            }     
+        }
+        else{//fall back to dropdown selected previous author
+            	$author = $this->input->post('author');       
+        }
+		if($user=$this->book->add_book($this->input->post())){
+			$insert_id = $this->db->insert_id();
+			redirect("review/$insert_id");
+		}
+		redirect('addbook');
 	}
 }
