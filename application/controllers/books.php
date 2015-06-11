@@ -25,7 +25,13 @@ class books extends CI_Controller {
 	}
 
 	public function view_addbook(){
-		$this->load->view('addbook');
+		$this->load->model('book');
+		if($get_authors= $this->book->get_all_authors()){
+			$this->load->view('addbook', array('authors' => $get_authors));
+		}
+		else{
+		redirect('/');
+		}
 	}
 
 	public function view_user(){

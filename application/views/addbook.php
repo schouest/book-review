@@ -71,9 +71,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<form method='post' action='submitbook' id='theform'>
 			<label>Title: <input type='text' name='title'></label>
 			<label>Author: <select name='author'>
-				<option value="1">ex 1</option>
-				<option value="2">ex 2</option>
-				<option value="3">ex 3</option>
+<?php				foreach ($authors as $author) {
+?>			<option value='<?= $author['author_id']?>'><?= $author['name']?>			
+			</option>
+<?php }
+?>
 			</select></label>
 			<label>Or enter new Author: <input type='text' name='newauthor' placeholder="overrides selection above"></label>
 			<label>Review: <textarea form='theform' placeholder="add review" name="review"></textarea></label>

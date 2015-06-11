@@ -4,6 +4,10 @@ class book extends CI_Model {
 function get_all_users(){
     return $this->db->query("SELECT * FROM users")->result_array();
 }
+
+function get_all_authors(){
+    return $this->db->query("SELECT * FROM authors")->result_array();
+}
  
 function get_user($id){
 	return $this->db->query("SELECT * FROM users WHERE user_id = ?", array($id))->row_array();
