@@ -58,14 +58,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div id='toprightnav'>
 	<ul>
 		<li><a href="/">Home</a></li>
-		<li><form action='logout'>
+		<li><form action='/logout'>
 			<button type='submit' value='submit'>Log Out</button>
 		</form></li>
 		
 	</ul>
 </div>
 <div id="container">
-
 <p><?= $this->session->flashdata('errors'); ?></p>
 	<div id="body">
 		<form method='post' action='submitbook' id='theform'>

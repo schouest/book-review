@@ -59,7 +59,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div id='toprightnav'>
 	<ul>
 		<li><a href='/'>Home</a></li>
-		<li><form action='logout'>
+		<li><form action='/logout'>
 			<button type='submit' value='submit'>Log Out</button>
 		</form></li>		
 	</ul>
@@ -85,13 +85,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			echo '&#9750';
 			$i++;
 		}
-
 		?><br>
 		<p><a href="/viewuser/<?= $review['user_id'] ?>"><?= $review['alias'] ?></a> says: <?= $review['txt'] ?></p>
 		<p>Posted on: <?= $review['date_added'] ?></p><?php
 		}
-	
-
 ?>
 	</div>
 </div>

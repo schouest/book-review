@@ -102,9 +102,7 @@ class books extends CI_Controller {
 				redirect('mainpage');
 			}
 			$this->session->set_flashdata('errors', 'Invalid Login Credentials');
-			/*echo $passcode .'-> ' . $encrypt_pass . ' is not equal to ' . $user['password'] . ' and the salt is ' . $salt;
-			die();*/		
-		}//=failure
+		}
 			$this->session->set_flashdata('errors', 'Invalid Login Credentials');
 		redirect('/');
 	}

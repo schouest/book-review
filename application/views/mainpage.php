@@ -54,13 +54,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div id='toprightnav'>
 	<ul>
 		<li><a href='addbook'>Add Book And Review</a></li>
-		<li><form action='logout'>
+		<li><form action='/logout'>
 			<button type='submit' value='submit'>Log Out</button>
 		</form></li>	
 	</ul>
 </div>
 <div id="container">
-
 	<div id="body">
 		<h1>Latest Book Reviews</h1>
 <?php
@@ -80,16 +79,11 @@ $review['txt'];
 ?></p>
 <p><?= 'posted on ' . $review['date_added']	
 ?>
-
 <hr><?php
 	}
-
 	?><p></p>
-
 <?php 
 ?>
-
-
 		<h2>Other Books to Review</h2>
 		<div>
 <?php

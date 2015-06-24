@@ -99,6 +99,5 @@ $query = "INSERT INTO reviews (book_id, user_id, rating, txt, date_added) VALUES
          $values = array($book_id, $user_id, $review_info['rating'], $review_info['review'], date("Y-m-d, H:i:s"));
          return $this->db->query($query, $values);
     }
-
 }
 ?>

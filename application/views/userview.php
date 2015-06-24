@@ -50,15 +50,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</style>
 </head>
 <body>
-<h2>Welcome to Amazing Zone books</h2>
+<h2>User info for <?= $user_info[0]['alias'] ?></h2>
 <div id='toprightnav'>
 	<ul>
 		<li><a href='/'>Home</a></li>
 		<li><a href='addbook'>Add Book And Review</a></li>
-		<li><form action='logout'>
+		<li><form action='/logout'>
 			<button type='submit' value='submit'>Log Out</button>
-		</form></li>
-		
+		</form></li>	
 	</ul>
 </div>
 <div id="container">
