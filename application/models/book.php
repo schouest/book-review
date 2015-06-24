@@ -33,6 +33,10 @@ function get_reviews_byid($bookid){
     return $this->db->query("SELECT * FROM reviews LEFT JOIN books ON books.book_id = reviews.book_id LEFT JOIN users ON users.user_id = reviews.user_id WHERE reviews.book_id = ?", array($bookid))->result_array();
 }
 
+function get_user_info($id){
+    return $this->db->query("SELECT users.user_id, users.name, users.alias, users.email, reviews.date_added, reviews.review_id, books.book_id, books.title  FROM book_rev.users LEFT JOIN reviews ON users.user_id = reviews.user_id LEFT JOIN books ON books.book_id = reviews.book_id WHERE users.user_id = ?", array($id))->result_array();
+}
+
 
 	function validate_reg($post){
 $this->load->library('form_validation');

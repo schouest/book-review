@@ -62,14 +62,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</ul>
 </div>
 <div id="container">
-<?php var_dump($user_id)?>
 	<div id="body">
-		<h3>User Alias: </h3>
-		<p>Name: </p>
-		<p>Email: </p>
-		<p>Total Reviews: </p>
+		<h3>User Alias: <?= $user_info[0]['alias'] ?></h3>
+		<p>Name: <?= $user_info[0]['name']?></p>
+		<p>Email: <?= $user_info[0]['email']?></p>
+		<p>Total Reviews: <?= count($user_info) ?></p>
 		<br>
 		<h4>Posted Reviews on the following books</h4>
+<?php foreach ($user_info as $review) {
+?><p><a href="/review/<?= $review['book_id'] ?>"><?= $review['title'] ?></a></p><?php
+}
+?>
 	</div>
 </div>
 </body>

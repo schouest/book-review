@@ -41,7 +41,11 @@ class books extends CI_Controller {
 	}
 
 	public function view_user($id){
-		$this->load->view('userview', array('user_id' => $id));
+		$this->load->model('book');
+		$get_info= $this->book->get_user_info($id);
+
+
+		$this->load->view('userview', array('user_info' => $get_info));
 	}
 
 	public function view_addreview($id){
