@@ -1,6 +1,5 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-//TODO: Need to add ability to review from this page
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -88,7 +87,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		}
 
 		?><br>
-		<p><?= $review['alias'] ?> says: <?= $review['txt'] ?></p>
+		<p><a href="/viewuser/<?= $review['user_id'] ?>"><?= $review['alias'] ?></a> says: <?= $review['txt'] ?></p>
 		<p>Posted on: <?= $review['date_added'] ?></p><?php
 		}
 	

@@ -62,8 +62,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</ul>
 </div>
 <div id="container">
-
+<?php var_dump($user_id)?>
 	<div id="body">
+		<h3>User Alias: </h3>
+		<p>Name: </p>
+		<p>Email: </p>
+		<p>Total Reviews: </p>
+		<br>
+		<h4>Posted Reviews on the following books</h4>
 	</div>
 </div>
 </body>

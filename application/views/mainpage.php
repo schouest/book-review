@@ -74,8 +74,7 @@ for($i=0; $i<$review['rating'];$i++){
 			echo '&#9750';
 			$i++;
 		}
-
-?>	<p><?= $review['alias']?> says: 
+?>	<p><a href="viewuser/<?= $review['user_id'] ?>"><?= $review['alias']?></a> says: 
 <?=
 $review['txt'];
 ?></p>
